@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Hook regression tests
+        run: python3 tests/test_guard.py
+
+      - name: Trigger eval cases are up to date
+        run: |
+          pip install pyyaml
+          python3 evals/_spec/generate_triggers.py
+          git diff --exit-code -- evals/trigger
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate plugin
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .

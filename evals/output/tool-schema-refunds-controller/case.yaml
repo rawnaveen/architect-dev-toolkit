@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: tool-schema-refunds-controller
+context:
+  scaffold_script: setup.sh

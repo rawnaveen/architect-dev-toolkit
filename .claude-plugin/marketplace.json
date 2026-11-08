@@ -1,0 +1,17 @@
+{
+  "name": "rawnaveen",
+  "owner": {
+    "name": "Naveen Rawat",
+    "url": "https://github.com/rawnaveen"
+  },
+  "metadata": {
+    "description": "Claude Code plugins by Naveen Rawat"
+  },
+  "plugins": [
+    {
+      "name": "architect-dev-toolkit",
+      "source": "./",
+      "description": "Auto-triggering skills, subagents and safety/cost hooks for Java/Spring, AWS/EKS, SRE, architecture work and building with Claude."
+    }
+  ]
+}

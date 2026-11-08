@@ -1,0 +1,262 @@
+# Trigger spec: generates evals/trigger/<component>/<pos|neg>-NN cases.
+# kind: skill -> asserts the Skill tool was called with this skill (or not, for negatives)
+# kind: agent -> asserts the Agent tool was called with this subagent_type (or not)
+# Regenerate after editing: python3 evals/_spec/generate_triggers.py
+
+skills:
+  claude-api-cost-optimizer:
+    positive:
+      - "Our nightly job sends 40k support tickets to claude-sonnet-5-5 with the same 6k-token system prompt each time and the bill is huge. How do we cut the cost?"
+      - "Which Claude model and effort level should I use for classifying incoming emails into 12 categories at about 2 million a month?"
+      - "Should I use prompt caching or the batch API for generating product descriptions overnight with Claude?"
+      - "We call Bedrock Claude from a Spring Boot service for every page view and latency and cost are both too high. What should we change?"
+      - "Make this Claude API call cheaper: client.messages.create(model='claude-opus-5-5', max_tokens=64000, system=BIG_PROMPT, messages=msgs)"
+    negative:
+      - "How much does an m7g.large EC2 instance cost per month in Sydney?"
+      - "My Claude Code sessions keep hitting the usage limit, how do I make Claude Code itself use fewer tokens?"
+      - "Explain the difference between AWS Savings Plans and Reserved Instances."
+
+  claude-integration-reviewer:
+    positive:
+      - "Is this Claude integration production ready? It's a Java service that calls the Messages API, parses the JSON reply, and retries on any exception."
+      - "My Claude API call sometimes returns truncated JSON and my parser crashes. What am I doing wrong?"
+      - "Review how our Python worker handles Claude tool_use responses and tool_result messages."
+      - "The Anthropic SDK call in our service hangs for minutes on long reports. What's wrong with how we call it?"
+      - "We prefill the assistant turn with '{' to force JSON and since upgrading the model we get a 400. Why?"
+    negative:
+      - "Review this SQL query for performance: SELECT * FROM orders WHERE status = 'NEW' ORDER BY created_at."
+      - "What is the Model Context Protocol?"
+      - "Write a unit test for a Java method that reverses a string."
+
+  tool-schema-designer:
+    positive:
+      - "I want Claude to be able to call our refunds REST API: GET /refunds/{id}, POST /refunds, POST /refunds/{id}/cancel. Write the tool definitions."
+      - "Turn this OpenAPI operation into a Claude tool: operationId searchCustomers, query params name, email, page."
+      - "Claude keeps calling get_order when it should call get_order_history. How should I redesign these two tools?"
+      - "Design the function-calling schema for a tool that books a meeting room with date, start time, duration and attendees."
+      - "Write an input_schema for a Claude tool that creates a Jira ticket."
+    negative:
+      - "Design a REST API for a library management system."
+      - "What's the difference between JSON Schema draft 7 and 2020-12?"
+      - "Generate a Java record for a Customer with name, email and address."
+
+  mcp-server-scaffold:
+    positive:
+      - "Build an MCP server that exposes read-only Confluence search to Claude."
+      - "I want Claude Code to query our Postgres read replica. Create an MCP server for it in Python."
+      - "Wrap our internal inventory REST API as an MCP server in Java."
+      - "My stdio MCP server keeps disconnecting from Claude Desktop right after it starts. How do I debug it?"
+      - "Create an MCP integration so Claude can list and describe our Kubernetes deployments without changing anything."
+    negative:
+      - "What MCP servers are popular for GitHub?"
+      - "Set up a Spring Boot REST endpoint that returns inventory levels."
+      - "Explain what JSON-RPC is."
+
+  prompt-hardening:
+    positive:
+      - "Improve this system prompt: 'You are a bot. CRITICAL: ALWAYS answer in JSON. NEVER say anything else. Use the search tool ALWAYS.'"
+      - "The model keeps ignoring the formatting instructions in my prompt. Can you make the prompt better?"
+      - "Our summariser prompt reads customer emails, and I'm worried an email could hijack it. Harden the prompt."
+      - "We're migrating our prompts from Claude Sonnet 4.5 to Sonnet 5.5. Rewrite this prompt for the new model: 'Think step by step inside <thinking> tags, then answer.'"
+      - "My prompt gives inconsistent output formats between runs. Here it is: 'Summarise the doc. Give key points. Be concise.'"
+    negative:
+      - "Write a haiku about Sydney Harbour."
+      - "Summarise this paragraph: Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications."
+      - "Translate 'good morning' into Hindi."
+
+  agent-guardrails-config:
+    positive:
+      - "Set up Claude Code for this Spring Boot repo so it can run Maven without asking but can never touch .env or push to main."
+      - "How do I stop Claude Code from ever running kubectl delete?"
+      - "Create a .claude/settings.json and a CLAUDE.md for our payments service."
+      - "Lock down a headless Claude Agent SDK agent so it can only read files and run our test command."
+      - "Allow these commands without asking: ./mvnw test, git status, git diff."
+    negative:
+      - "What is Kubernetes RBAC?"
+      - "Write a GitHub Actions workflow that runs Maven tests."
+      - "Explain Linux file permissions."
+
+  llm-eval-harness:
+    positive:
+      - "We want to switch our ticket summariser from Opus to Haiku to save money. Will quality drop? How do we check?"
+      - "Build an eval for our Claude-powered invoice extraction feature."
+      - "How do I regression test prompts in CI so a prompt change doesn't break production?"
+      - "Compare claude-sonnet-5-5 and claude-haiku-5-5 on our classification task."
+      - "I changed the system prompt of our support bot. How can I be sure it didn't get worse?"
+    negative:
+      - "Write JUnit tests for this Calculator class."
+      - "What is A/B testing?"
+      - "Set up load testing for our REST API with Gatling."
+
+  ccdvf-flashcards:
+    positive:
+      - "Quiz me on the Claude developer certification."
+      - "Give me CCDV-F practice questions on prompt caching."
+      - "Test me on the Claude Agent SDK and MCP for the exam."
+      - "Flashcards for the Claude Certified Developer Foundations exam please."
+      - "Let's do some practice questions for my Claude certification, mixed domains."
+    negative:
+      - "Quiz me on AWS Solutions Architect Associate."
+      - "What is the TOGAF ADM?"
+      - "Explain prompt caching."
+
+  architecture-decision-record:
+    positive:
+      - "Should we use Kafka or SQS for payment events between our EKS services? We need ordering per account and replay."
+      - "Write an ADR for moving our session store from Redis to DynamoDB."
+      - "We decided to use Spring Cloud Gateway instead of Kong. Document this decision."
+      - "Compare options for multi-region active-active vs active-passive for our customer API, and record the trade-offs."
+      - "Help me decide between Aurora PostgreSQL and DynamoDB for the new ledger service."
+    negative:
+      - "What is Kafka?"
+      - "How do I create an SQS queue with Terraform?"
+      - "Explain the CAP theorem."
+
+  aws-solution-review:
+    positive:
+      - "Review this architecture: ALB -> EKS (single node group in one AZ) -> RDS PostgreSQL single-AZ, S3 bucket for uploads with public read."
+      - "Is this EKS setup well-architected? Pods use node IAM roles and secrets are in ConfigMaps."
+      - "Check this Terraform: an S3 bucket with acl = public-read and an IAM policy with Action = '*' and Resource = '*'."
+      - "What could go wrong with running our batch jobs on spot instances with no checkpointing?"
+      - "Estimate the AWS cost drivers and risks for this design: 3 NAT gateways, cross-AZ traffic heavy microservices, CloudWatch logs retained forever."
+    negative:
+      - "What is Amazon S3?"
+      - "Write a Python script to upload a file to S3 with boto3."
+      - "How do I log in to the AWS console with SSO?"
+
+  incident-postmortem:
+    positive:
+      - "Write a postmortem for yesterday's outage: 14:02 deploy of checkout v2.3, 14:05 5xx alerts, 14:20 rollback, 14:31 recovered. Cause was a missing DB index."
+      - "Do an RCA for this incident thread: payments timed out for 40 minutes because the connection pool was exhausted after a config change."
+      - "Turn these Slack notes from the incident into a post incident review."
+      - "Summarise this outage for the incident report: DNS change at 09:10 broke service discovery until 09:55."
+      - "We need a blameless incident report for the SEV2 last night where certificates expired."
+    negative:
+      - "Prod is down right now, checkout returns 503s! Help me find out why."
+      - "What is a blameless culture?"
+      - "Write a status page message saying we are investigating an issue."
+
+  observability-instrumentation:
+    positive:
+      - "Add metrics and tracing to this Spring Boot controller that handles refunds."
+      - "Make our Kafka consumer in Spring observable: we can't tell how far behind it is or how often it fails."
+      - "Define SLOs and alerts for our checkout API."
+      - "Instrument our outbound HTTP client calls to the payments provider with OpenTelemetry."
+      - "Set up structured JSON logging with trace IDs in our Spring Boot 3 service."
+    negative:
+      - "What is Prometheus?"
+      - "Our pod is in CrashLoopBackOff, why?"
+      - "Install Grafana on my laptop."
+
+  claude-code-cost-coach:
+    positive:
+      - "I keep hitting my Claude Code usage limits in this repo. How can I save tokens?"
+      - "Why is Claude Code using so many tokens in my monorepo?"
+      - "Audit my CLAUDE.md, it's 600 lines and Claude seems slow."
+      - "Optimise my Claude Code setup for cost."
+      - "How can I make my Claude Code sessions cheaper without losing quality?"
+    negative:
+      - "Make this Claude API call in our Python service cheaper."
+      - "How much does a Claude Pro subscription cost?"
+      - "What is a token in an LLM?"
+
+  pr-architecture-review:
+    positive:
+      - "Review my changes before I merge."
+      - "Is this branch ready to merge?"
+      - "Code review the diff on this feature branch please."
+      - "Check my changes before I push."
+      - "Review this PR for security, performance and design."
+    negative:
+      - "What makes a good pull request description?"
+      - "How do I squash commits in git?"
+      - "Explain the difference between merge and rebase."
+
+agents:
+  doc-explorer:
+    positive:
+      - "Where in this codebase do we call the payments service, and with what timeouts?"
+      - "Find every place we read the 'feature.flags' config and summarise how it's used."
+      - "Scan the logs folder and tell me what's causing the 500 errors."
+    negative:
+      - "What does the HTTP 429 status code mean?"
+      - "Write a Java method that sums a list of integers."
+
+  security-reviewer:
+    positive:
+      - "Do a security review of the authentication module in this repo."
+      - "Check this codebase for OWASP top 10 issues."
+      - "Threat check our new file upload endpoint for vulnerabilities."
+    negative:
+      - "What is OAuth 2.0?"
+      - "Generate a strong password for me."
+
+  performance-reviewer:
+    positive:
+      - "Review the order service code in this repo for performance problems like N+1 queries."
+      - "Is there anything in this repository's data-access layer that won't scale?"
+    negative:
+      - "What is Big O notation?"
+      - "How do I measure CPU usage on Linux?"
+
+  spring-conventions-reviewer:
+    positive:
+      - "Does the code in this Spring Boot repo follow good Spring conventions? Review the design."
+      - "Review the layering and design of this Spring module."
+    negative:
+      - "What is dependency injection?"
+      - "Create a new Spring Boot project with Spring Initializr."
+
+  spring-test-writer:
+    positive:
+      - "Write unit tests for the services in this Spring Boot repo and run them."
+      - "Increase test coverage for the RefundService in this project."
+      - "Add an integration test with Testcontainers for the repository layer here."
+    negative:
+      - "What is the difference between a mock and a stub?"
+      - "Explain the test pyramid."
+
+  k8s-debugger:
+    positive:
+      - "The orders deployment in staging is stuck rolling out. Why is my deploy failing?"
+      - "My pod keeps going into CrashLoopBackOff on EKS. Investigate."
+      - "Pods are stuck Pending in the payments namespace, find out why."
+    negative:
+      - "What is a Kubernetes Deployment?"
+      - "Write a Helm chart for a simple nginx app."
+
+  incident-triage:
+    positive:
+      - "PagerDuty: checkout-api p99 latency > 2s for 10 minutes in prod. Help!"
+      - "Prod is down, we're getting 500s from the payments API since the last release."
+      - "Alert fired: error rate on orders-service jumped to 15% after the 3pm deploy."
+    negative:
+      - "Write a postmortem for last week's outage from these notes: deploy at 14:02, rollback at 14:20."
+      - "What is an SLO?"
+
+  dependency-upgrader:
+    positive:
+      - "Upgrade this project from Spring Boot 3.3 to 3.5 and fix anything that breaks."
+      - "Dependabot flagged jackson-databind as vulnerable, fix it."
+      - "Bump all our outdated dependencies in this Maven project."
+    negative:
+      - "What is semantic versioning?"
+      - "How does Maven dependency resolution work?"
+
+  runbook-operator:
+    positive:
+      - "Follow the runbook for rotating the TLS certificate on the ingress, steps are in the file docs/runbooks/cert-rotation.md."
+      - "Work through OPS-482, the Kafka consumer lag runbook."
+      - "Run the DR checklist for the payments database step by step."
+    negative:
+      - "Write a runbook for restarting the payments service."
+      - "What should a good runbook contain?"
+
+  migration-runner:
+    positive:
+      - "Migrate all 12 modules in this repo from javax to jakarta."
+      - "Move every service in this monorepo to the new logging library, module by module."
+      - "Refactor every controller in this project to use the new error response model."
+    negative:
+      - "Rename this one variable from userId to customerId."
+      - "What changed between Spring Boot 2 and 3?"
