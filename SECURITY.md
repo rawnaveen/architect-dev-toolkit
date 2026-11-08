@@ -13,6 +13,26 @@ being run. Relevant issues include:
 The hooks are a safety net based on pattern matching, not a security boundary. Use least-privilege
 credentials and Claude Code's sandbox for real isolation.
 
+## What the plugin runs, and what it doesn't
+
+For users and reviewers: the plugin runs exactly one program, `hooks/scripts/guard.py` (Python standard
+library only), from the three hooks in `hooks/hooks.json`. It:
+
+- **Makes no network connections.** It imports no networking modules and sends nothing off the machine.
+- **Reads no credentials.** It never opens secret files; it only matches the *paths* in Claude's tool calls
+  against a list of secret-file patterns, so it can block them.
+- **Opens one file:** `PROGRESS.md` in the project root, if present, to show it as session context.
+- **Runs one subprocess:** `kubectl config current-context`, with a 3-second timeout, to tell whether the
+  active Kubernetes context is production. Its output is used only for that check.
+- **Reads environment variables** `AWS_PROFILE` (production detection), `ADT_COST_GUARD` (on/off switch) and
+  `CLAUDE_PROJECT_DIR` (where to look for `PROGRESS.md`).
+- **Checks file sizes** (not contents) for the cost guard.
+
+Credential paths, regular expressions and command examples in the skills and docs are rules and
+documentation: the deny lists Claude writes into settings files, and the patterns the guard blocks. They are
+not code that reads or transmits anything. The Python files under `tests/`, `examples/` and `evals/` are
+developer tooling that Claude Code never runs as part of the plugin.
+
 ## Reporting a vulnerability
 
 Please do **not** open a public issue. Use GitHub's
