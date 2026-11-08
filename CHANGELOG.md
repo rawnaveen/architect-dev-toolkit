@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-11-08
+
+### Changed
+- Hooks now use exec form (`command` + `args`) instead of a one-line shell command, as the Claude directory requests. Paths with spaces need no quoting.
+- README describes the secret-file guard without quoting credential file paths. The full list is in `docs/hooks.md`.
+
 ## [0.3.0] - 2026-11-08
 
 ### Added
@@ -29,5 +35,6 @@ All notable changes to this project are documented here. The format follows
 - 14 skills, 10 subagents, a Bash safety guard, a secret-file guard, read-only agent enforcement and
   `PROGRESS.md` session resume.
 
-[Unreleased]: https://github.com/rawnaveen/architect-dev-toolkit/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/rawnaveen/architect-dev-toolkit/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/rawnaveen/architect-dev-toolkit/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/rawnaveen/architect-dev-toolkit/releases/tag/v0.3.0

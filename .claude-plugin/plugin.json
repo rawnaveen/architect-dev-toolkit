@@ -1,7 +1,7 @@
 {
   "name": "architect-dev-toolkit",
   "displayName": "Architect Dev Toolkit",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Auto-triggering skills, subagents and safety/cost hooks for Java/Spring, AWS/EKS, SRE, architecture work and building with Claude.",
   "author": {
     "name": "Naveen Rawat",

@@ -130,7 +130,7 @@ yourself. Full rules: [docs/hooks.md](docs/hooks.md).
 |---|---|
 | **Bash guard** | `rm -rf` of root, home or the working dir; force push; `git clean -fdx`; destructive SQL; `kubectl delete`; kubectl/helm changes to prod contexts or namespaces; `terraform destroy` and auto-approved applies; mutating AWS CLI calls with a prod profile; shell reads of secret files |
 | **Read-only agents** | Any mutation (cluster, cloud, git, files) attempted by `k8s-debugger`, `incident-triage`, the three reviewers and `doc-explorer` |
-| **Secret file guard** | Reading or editing `.env*` (except `.env.example`), keys and certificates, `~/.aws/credentials`, `~/.kube/config`, `~/.ssh/`, `.npmrc`, `.git-credentials` and similar |
+| **Secret file guard** | Reading or editing `.env*` files (except `.env.example`), private keys and certificates, cloud and Kubernetes credential files, SSH keys and package-registry tokens. Full list in [docs/hooks.md](docs/hooks.md) |
 | **Cost guard** | Reading generated or vendored folders (`target/`, `build/`, `node_modules/`, `dist/`, `.gradle/`...), lockfiles, minified or compiled files, and whole-file reads over 512 KB. Claude is told to grep, read a range, or delegate to `doc-explorer`. Disable per session with `ADT_COST_GUARD=off claude` |
 | **Session resume** | Not a block: loads `PROGRESS.md` into context at session start, resume and after compaction, for long-running work |
 

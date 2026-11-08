@@ -7,8 +7,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py\" bash",
-            "timeout": 10
+            "command": "python3",
+            "timeout": 10,
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py",
+              "bash"
+            ]
           }
         ]
       },
@@ -17,8 +21,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py\" files",
-            "timeout": 10
+            "command": "python3",
+            "timeout": 10,
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py",
+              "files"
+            ]
           }
         ]
       }
@@ -29,8 +37,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py\" progress",
-            "timeout": 10
+            "command": "python3",
+            "timeout": 10,
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard.py",
+              "progress"
+            ]
           }
         ]
       }
