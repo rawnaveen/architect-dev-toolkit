@@ -6,17 +6,16 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Changed
-- `tool-schema-designer` states the tool-name rule in words instead of a regex (clears a directory scanner false positive).
-
-### Fixed
-- `agent-guardrails-config` referred to the plugin by an old name.
-
 ## [0.3.1] - 2026-11-08
 
 ### Changed
 - Hooks now use exec form (`command` + `args`) instead of a one-line shell command, as the Claude directory requests. Paths with spaces need no quoting.
 - README describes the secret-file guard without quoting credential file paths. The full list is in `docs/hooks.md`.
+- `tool-schema-designer` states the tool-name rule in words instead of a regex (clears a directory scanner false positive).
+- `SECURITY.md` now states exactly what the hook script does and doesn't do: no network access, no credential reads, one file opened, one local `kubectl` lookup.
+
+### Fixed
+- `agent-guardrails-config` referred to the plugin by an old name.
 
 ## [0.3.0] - 2026-11-08
 
