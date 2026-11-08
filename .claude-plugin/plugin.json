@@ -1,0 +1,29 @@
+{
+  "name": "architect-dev-toolkit",
+  "displayName": "Architect Dev Toolkit",
+  "version": "0.3.1",
+  "description": "Auto-triggering skills and subagents for Java/Spring, AWS/EKS, SRE, architecture work and building with Claude.",
+  "author": {
+    "name": "Naveen Rawat",
+    "url": "https://github.com/rawnaveen"
+  },
+  "homepage": "https://github.com/rawnaveen/architect-dev-toolkit",
+  "repository": "https://github.com/rawnaveen/architect-dev-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "java",
+    "spring",
+    "aws",
+    "eks",
+    "kubernetes",
+    "sre",
+    "architecture",
+    "adr",
+    "claude-api",
+    "mcp",
+    "cost",
+    "security"
+  ],
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://github.com/rawnaveen/architect-dev-toolkit/blob/directory/PRIVACY.md"
+}
