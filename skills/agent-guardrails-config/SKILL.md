@@ -28,7 +28,7 @@ Produce `.claude/settings.json`, optional hook scripts and a lean CLAUDE.md for 
    - `defaultMode`: `default` (never `bypassPermissions` outside a throwaway sandbox).
 3. Remind: deny rules hold even in bypass mode; hooks run first and a hook deny wins; CLAUDE.md is
    advisory, settings and hooks are enforced; project allow rules wait for workspace trust.
-4. Hooks: the claude-dev-toolkit plugin already ships global guards (dangerous Bash, secret files). Add
+4. Hooks: the architect-dev-toolkit plugin already ships global guards (dangerous Bash, secret files). Add
    repo-specific hooks only when needed, e.g. PostToolUse on `Write|Edit` running `./mvnw -q spotless:apply`.
 5. CLAUDE.md under 200 lines: build/test commands, module map, conventions that differ from defaults,
    "never do" list. Move path-specific guidance to `.claude/rules/<topic>.md` with `paths:` frontmatter,

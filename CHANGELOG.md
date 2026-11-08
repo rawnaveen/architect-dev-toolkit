@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- `tool-schema-designer` states the tool-name rule in words instead of a regex (clears a directory scanner false positive).
+
+### Fixed
+- `agent-guardrails-config` referred to the plugin by an old name.
+
 ## [0.3.1] - 2026-11-08
 
 ### Changed

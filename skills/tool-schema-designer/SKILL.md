@@ -17,7 +17,7 @@ Produce Claude tool definitions that are easy to select correctly and hard to mi
 1. Read the source (Spring `@RestController`, OpenAPI, service interface, function).
 2. Group operations. Consolidate related ones into one tool with an `action` enum when they share a
    resource (e.g. `jira_issue` with `action: create|update|get|transition`). Keep the toolset small.
-3. Name with a service namespace: `^[a-zA-Z0-9_-]{1,128}$`, e.g. `payments_get_refund_status`.
+3. Name with a service namespace, using 1 to 128 letters, digits, underscores or hyphens, e.g. `payments_get_refund_status`.
 4. Write the description (3-6 sentences): what it does, when to use it, when NOT to use it (name the
    sibling tool to use instead), what each parameter means, side effects, and what it does not return.
 5. Write `input_schema`: `type: object`, explicit `required`, `additionalProperties: false`, enums for
