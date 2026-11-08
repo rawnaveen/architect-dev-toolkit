@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Plugin icon, social preview image and a demo GIF generated from real guard output (`examples/guard_demo.py`).
+
 ## [0.3.0] - 2026-11-08
 
 ### Added

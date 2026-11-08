@@ -6,6 +6,10 @@
 A [Claude Code](https://code.claude.com) plugin for engineers and architects who work with
 **Java/Spring Boot, AWS/EKS, SRE practices and the Claude API**.
 
+![The plugin's hooks blocking a prod kubectl delete, a force push, a .env read and a 1.4 MB log read, and keeping a debugging agent read-only](assets/guard-demo.gif)
+
+<sub>Real output from the plugin's guard script. Run it yourself: `python3 examples/guard_demo.py`</sub>
+
 It adds **14 skills, 10 subagents and 3 hooks** that work without being called by name:
 
 - **Skills** load when your request matches them ("should we use Kafka or SQS?" writes an ADR).

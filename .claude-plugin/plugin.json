@@ -10,5 +10,19 @@
   "homepage": "https://github.com/rawnaveen/architect-dev-toolkit",
   "repository": "https://github.com/rawnaveen/architect-dev-toolkit",
   "license": "MIT",
-  "keywords": ["java", "spring", "aws", "eks", "kubernetes", "sre", "architecture", "adr", "claude-api", "mcp", "cost", "security"]
+  "keywords": [
+    "java",
+    "spring",
+    "aws",
+    "eks",
+    "kubernetes",
+    "sre",
+    "architecture",
+    "adr",
+    "claude-api",
+    "mcp",
+    "cost",
+    "security"
+  ],
+  "icon": "./assets/icon.png"
 }
