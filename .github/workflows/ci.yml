@@ -35,3 +35,8 @@ jobs:
         run: |
           npm install -g @anthropic-ai/claude-code
           claude plugin validate .
+
+      - name: Directory edition builds and validates
+        run: |
+          python3 scripts/build_directory_edition.py "$RUNNER_TEMP/edition"
+          claude plugin validate "$RUNNER_TEMP/edition"

@@ -7,6 +7,7 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Added
+- Directory edition: a `directory` branch with the skills and agents only (Markdown, JSON and images), built from `main` by `scripts/build_directory_edition.py` and kept in sync by the `Directory edition` workflow. The Claude plugin directory accepts hooks and scripts only from Verified organisations, so it tracks this branch. The full edition with hooks still installs from GitHub as before.
 - `PRIVACY.md` privacy policy, linked from the README and `plugin.json` (`privacyPolicyUrl`).
 
 ## [0.3.1] - 2026-11-08

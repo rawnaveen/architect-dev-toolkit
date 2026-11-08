@@ -1,0 +1,65 @@
+name: Directory edition
+
+# Rebuilds the `directory` branch (skills and agents only, Markdown/JSON/images)
+# from main. The Claude plugin directory tracks that branch.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: directory-edition
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build edition
+        run: python3 scripts/build_directory_edition.py "$RUNNER_TEMP/edition"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate edition
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate "$RUNNER_TEMP/edition"
+
+      - name: Commit to the directory branch
+        env:
+          SRC_SHA: ${{ github.sha }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin directory >/dev/null; then
+            git worktree add "$RUNNER_TEMP/branch" origin/directory
+            cd "$RUNNER_TEMP/branch"
+            git checkout -B directory
+          else
+            git worktree add --detach "$RUNNER_TEMP/branch"
+            cd "$RUNNER_TEMP/branch"
+            git checkout --orphan directory
+          fi
+          git rm -rqf --ignore-unmatch .
+          cp -a "$RUNNER_TEMP/edition/." .
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Directory edition unchanged"
+            exit 0
+          fi
+          git commit -q -m "Directory edition from main ${SRC_SHA::7}"
+          git push origin directory

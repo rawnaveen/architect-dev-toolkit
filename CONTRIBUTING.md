@@ -22,6 +22,7 @@ claude --plugin-dir .            # try your changes in a session
 ```bash
 claude plugin validate .         # structure and frontmatter
 python3 tests/test_guard.py      # hook regression tests (must stay green)
+python3 scripts/build_directory_edition.py /tmp/edition   # directory edition still builds
 ```
 
 If you change a skill or agent `description`, run its trigger evals:
@@ -37,6 +38,10 @@ If you add a component:
 2. Add an output case under `evals/output/` when the component produces something checkable.
 3. Document it in `README.md` and `docs/components.md`.
 4. Add a line to `CHANGELOG.md` under "Unreleased".
+
+Don't edit the `directory` branch by hand: CI rebuilds it from `main` on every push. If an agent or
+skill mentions the plugin's hooks, add a patch for it in `scripts/build_directory_edition.py`, because
+the directory edition has none.
 
 If you change `hooks/scripts/guard.py`, add test cases to `tests/test_guard.py` for both the newly
 blocked and the still-allowed behaviour.

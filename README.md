@@ -59,6 +59,13 @@ git clone https://github.com/rawnaveen/architect-dev-toolkit.git
 claude --plugin-dir ./architect-dev-toolkit
 ```
 
+### Claude plugin directory
+
+The directory lists a **directory edition** with the skills and agents but no hooks (the directory
+accepts hooks and scripts only from Verified organisations). It is built automatically from `main`
+into the [`directory`](https://github.com/rawnaveen/architect-dev-toolkit/tree/directory) branch.
+Install from GitHub as above if you want the safety and cost hooks.
+
 ### Claude Desktop / claude.ai
 
 Download the repository as a zip and upload it as a plugin. Only the **skills** work there; subagents
