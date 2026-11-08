@@ -6,15 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Added
-- Plugin icon, social preview image and a demo GIF generated from real guard output (`examples/guard_demo.py`).
-
 ## [0.3.0] - 2026-11-08
 
 ### Added
 - 58 hook regression tests (`tests/test_guard.py`).
 - 160 trigger evals and 19 output-quality evals for `claude plugin eval` (`evals/`).
 - Public documentation, MIT licence, contributing and security policies, and CI.
+- Plugin icon, social preview image and a demo GIF generated from real guard output (`examples/guard_demo.py`).
 
 ### Changed
 - Marketplace renamed to `rawnaveen`. Install with `/plugin install architect-dev-toolkit@rawnaveen`.
