@@ -29,7 +29,7 @@ or "use the k8s-debugger agent".
 - [Testing and evals](#testing-and-evals)
 - [Customising](#customising)
 - [Requirements and limitations](#requirements-and-limitations)
-- [Contributing](#contributing) · [Security](#security) · [License](#license)
+- [Contributing](#contributing) · [Security](#security) · [Privacy](#privacy) · [License](#license)
 
 ## Install
 
@@ -181,6 +181,10 @@ Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Security
 
 Please report vulnerabilities privately. See [SECURITY.md](SECURITY.md).
+
+## Privacy
+
+The plugin has no backend and collects, stores and sends nothing. See [PRIVACY.md](PRIVACY.md).
 
 ## License
 

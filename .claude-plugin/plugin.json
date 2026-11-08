@@ -24,5 +24,6 @@
     "cost",
     "security"
   ],
-  "icon": "./assets/icon.png"
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://github.com/rawnaveen/architect-dev-toolkit/blob/main/PRIVACY.md"
 }

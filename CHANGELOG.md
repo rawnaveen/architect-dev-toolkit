@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- `PRIVACY.md` privacy policy, linked from the README and `plugin.json` (`privacyPolicyUrl`).
+
 ## [0.3.1] - 2026-11-08
 
 ### Changed
